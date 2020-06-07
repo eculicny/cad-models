@@ -1,12 +1,3 @@
-l_x=3;
-w_y=6;
-h_z=4;
-mt=1/8;
-lid_pct = .4;
-overlap = .5;
-$fn = 100;
-//eps=.0001;
-
 
 function dimensionCalc(x, y, z, mt, lid_pct, lid_overlap_pct) = 
 	// height of lower box, interior x, interior y
@@ -15,8 +6,17 @@ function dimensionCalc(x, y, z, mt, lid_pct, lid_overlap_pct) =
 module cardBoxLid(x,y,z,mt,lid_pct){
 	difference(){
 		cube([x,y,z*lid_pct]);
-		translate([mt/2,mt/2,mt])
+		translate([(mt)/2,(mt)/2,mt])
 			cube([x-mt,y-mt,z*lid_pct - mt]);
+	}
+}
+
+module cardBoxSpacedLid(x,y,z,mt,lid_pct){
+	side_spacing = .2; // mm to allow for actually getting the lid off
+	difference(){
+		cardBoxLid(x,y,z,mt,lid_pct);
+		translate([(mt-side_spacing)/2,(mt-side_spacing)/2,mt-side_spacing])
+			cube([x-(mt-side_spacing),y-(mt-side_spacing),z*lid_pct - (mt-side_spacing)]);
 	}
 }
 
@@ -24,21 +24,21 @@ module cardBoxInsertSlot(ix,h,mt){
 	union(){
 		translate([mt,0,0])
 		union(){
-			cube([mt,mt,h]);
-			translate([0,mt*3/2,0])
-				cube([mt,mt,h]);
+			cube([mt/2,mt/2,h]);
+			translate([0,mt,0])
+				cube([mt/2,mt/2,h]);
 		}
 		
-		translate([ix,0,0])
+		translate([ix+mt/2,0,0])
 		union(){
-			cube([mt,mt,h]);
-			translate([0,mt*3/2,0])
-				cube([mt,mt,h]);
+			cube([mt/2,mt/2,h]);
+			translate([0,mt,0])
+				cube([mt/2,mt/2,h]);
 		}
 	}
 }
 
-module cardBox(x,y,z,lid_pct,lid_overlap_pct,slot_list){
+module cardBox(x,y,z,mt,lid_pct,lid_overlap_pct,slot_list){
 	l = dimensionCalc(x,y,z,mt,lid_pct,lid_overlap_pct);
 	h = l[0];
 	ix = l[1];
@@ -51,7 +51,7 @@ module cardBox(x,y,z,lid_pct,lid_overlap_pct,slot_list){
 			translate([0,-y,-z-mt])
 			cardBoxLid(x,y,z,mt,lid_pct);
 		translate([0,0,h+mt])
-			cube([x,y,lid_pct*overlap*z-mt]);
+			cube([x,y,lid_pct*lid_overlap_pct*z-mt]);
 	}
 
 	for (i = slot_list)
@@ -61,7 +61,7 @@ module cardBox(x,y,z,lid_pct,lid_overlap_pct,slot_list){
 			cardBoxInsertSlot(ix,h,mt);
 }
 
-module cardBoxDivider(x,y,z,lid_pct,lid_overlap_pct){
+module cardBoxDivider(x,y,z,mt,lid_pct,lid_overlap_pct){
 	l = dimensionCalc(x,y,z,mt,lid_pct,lid_overlap_pct);
 	h = l[0];
 	ix = l[1];
@@ -99,20 +99,34 @@ module cardBoxDivider(x,y,z,lid_pct,lid_overlap_pct){
 	}
 }
 
+
+l_x=30;
+w_y=60;
+h_z=40;
+mt=3;
+lid_pct = .4;
+overlap = .5;
+$fn = 100;
+eps=.0001;
+dividers=[0,.5,1];
+
 // box
-cardBox(l_x,w_y,h_z,lid_pct,overlap,[0,.5,1]);
+cardBox(l_x,w_y,h_z,mt,lid_pct,overlap,[]);
 
 // lid
 color("red")
-	rotate([180,0,0])
-	translate([0,-w_y,-2*h_z])
+	translate([40,0,0])
 	cardBoxLid(l_x,w_y,h_z,mt,lid_pct);
 
+color("green")
+	translate([80,0,0])
+	cardBoxSpacedLid(l_x,w_y,h_z,mt,lid_pct);
+
 // dividers
-color("yellow")
-	translate([-l_x-mt,0,0])
-	cardBoxDivider(l_x,w_y,h_z,lid_pct,overlap);
+//color("yellow")
+//	translate([-l_x-mt,0,0])
+//	cardBoxDivider(l_x,w_y,h_z,mt,lid_pct,overlap);
 
 //color("green")
-//	translate([mt,2*mt+(w_y-2*mt)*.75,mt])
-//	cardBoxDivider(l_x,w_y,h_z,lid_pct,overlap);
+//	translate([mt,(w_y)*.5-mt/4,mt])
+//	cardBoxDivider(l_x,w_y,h_z,mt,lid_pct,overlap);

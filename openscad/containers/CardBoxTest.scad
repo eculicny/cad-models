@@ -1,30 +1,35 @@
-use <..\libraries\boxes\CardBox.scad>
+use <.\boxes\CardBox.scad>
 
+// card measurements
+//modifier_card_width = 68; // mm
+//modifier_card_height = 44; // mm
+//modifier_card_thickness = .32; // mm better estimate // same as item cards and monster actions
+//card_count = 265;
 
-l_x=5;
-w_y=5;
-h_z=5;
-mt=1/8;
-lid_pct = .4;
-overlap = .5;
+modifier_card_width = 10; // mm
+modifier_card_height = 5; // mm
+modifier_card_thickness = .32; // mm better estimate // same as item cards and monster actions
+card_count = 20;
+
+// other params
+wall_thickness = 3; // mm
+interior_padding = 2; // mm
+lid_pct = .4; // % total height
+overlap = .75; // % of lid height
+divider_slots = []; // % locations from origin (?)
 $fn = 100;
-//eps=.0001;
+
+x = modifier_card_width + interior_padding + 2 * wall_thickness;
+z = modifier_card_height + interior_padding + 2 * wall_thickness;
+y = card_count * modifier_card_thickness + 2 * wall_thickness;
+
 
 
 // box
-cardBox(l_x,w_y,h_z,lid_pct,overlap,[.2,.5,.8]);
+cardBox(x,y,z,wall_thickness,lid_pct,overlap,divider_slots);
 
 // lid
 color("red")
-	rotate([180,0,0])
-	translate([0,-w_y,-2*h_z])
-	cardBoxLid(l_x,w_y,h_z,mt,lid_pct);
-
-// dividers
-color("yellow")
-	translate([-l_x-mt,0,0])
-	cardBoxDivider(l_x,w_y,h_z,lid_pct,overlap);
-
-//color("green")
-//	translate([mt,(w_y-2*mt)*.75 + mt,mt])
-//	cardBoxDivider(l_x,w_y,h_z,lid_pct,overlap);
+	
+	translate([0,-1.5*y,0])
+	cardBoxSpacedLid(x,y,z,wall_thickness,lid_pct);

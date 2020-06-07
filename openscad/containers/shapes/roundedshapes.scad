@@ -1,7 +1,7 @@
-r = .1;
-z = .5;
-x = 6.25;
-y = 4.25;
+r = 5;
+z = 50;
+x = 600;
+y = 400;
 
 $fn=50;
 
@@ -59,8 +59,13 @@ module roundcube_2d(size, radius)
 }
 
 color("green")
-translate([-3,0,0])
+translate([-x,0,0])
 roundcube_2d([x,y,z],r);
 
-color("red")
-roundcube([x,y,z],r);
+difference(){
+	color("red")
+		roundcube([x,y,z],r);
+	color("blue")
+	translate([3, 3,0])
+		roundcube([x-6,y-6,z],r);
+}
