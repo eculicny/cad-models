@@ -2,14 +2,17 @@ use <./shapes/roundedshapes.scad>
 use <./boxes/SplitBox.scad>
 include <./gloomhaven/gloomhaven_const.scad>
 
-large_x = LARGE_CARD_WIDTH + 2;
-large_y = LARGE_CARD_LENGTH + 2;
-small_x_ = SMALL_CARD_WIDTH + 2;
-small_y_ = SMALL_CARD_LENGTH + 2;
-inset_y = CLASS_STAT_CARD_WIDTH + 2;
-inset_x = CLASS_STAT_CARD_LENGTH + 2;
+large_x = LARGE_CARD_WIDTH;
+large_y = LARGE_CARD_LENGTH;
+small_x_ = SMALL_CARD_WIDTH;
+small_y_ = SMALL_CARD_LENGTH;
+inset_y = CLASS_STAT_CARD_WIDTH;
+inset_x = CLASS_STAT_CARD_LENGTH;
 
-height_z = 2 * MATERIAL_THICKNESS + CLASS_ACTION_DECK_COUNT * CARD_THICKNESS + 1;
+full_lid_x = MATERIAL_THICKNESS + inset_x - 2; // -1 padding
+full_lid_y = 2*MATERIAL_THICKNESS + inset_y - MATERIAL_THICKNESS - .5; // -.5 padding
+
+height_z = 2 * MATERIAL_THICKNESS + CLASS_ACTION_DECK_COUNT * CARD_THICKNESS + CARDBOARD_THICKNESS + 1;
 
 //CARDBOARD_THICKNESS;
 inneredge_height = height_z - MATERIAL_THICKNESS - CARDBOARD_THICKNESS - 1;
@@ -75,15 +78,20 @@ module splitDoubleBox(inset_size, small_size, large_size, z, slot, inneredge_hei
 				roundcube([small_x,small_y,z], r);
 
 			// large box on the right
-			translate([small_x+mt/2, iny_usable/2 - large_y/2, 0])
+			translate([small_x+mt, iny_usable/2 - large_y/2, 0])
 				roundcube([large_x, large_y, z], r);
+
+			// center cutout
+			translate([small_x - x/8,small_y - y/8,0])
+			roundcube([x/4,y/4,height_z], r);
 		}
 	}
 }
 
 splitDoubleBox([inset_x, inset_y], [small_x_, small_y_], [large_x, large_y], height_z, [SLOT_HEIGHT, SLOT_OFFSET], inneredge_height, RADIUS_EXT, MATERIAL_THICKNESS-1, LID_SCALE, text_val);
 
-//translate([0, full_y + 30,0])
-//color("purple")
+//translate([MATERIAL_THICKNESS - 1, .75, height_z - MATERIAL_THICKNESS])
+//translate([0, inset_y + 40,0])
+//color("yellow")
 //	boxLid([full_lid_x, full_lid_y], MATERIAL_THICKNESS, LID_SCALE);
 
