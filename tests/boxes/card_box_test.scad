@@ -1,4 +1,4 @@
-use <.\boxes\CardBox.scad>
+use <boxes/card_box.scad>
 
 // card measurements
 //modifier_card_width = 68; // mm
@@ -23,13 +23,11 @@ x = modifier_card_width + interior_padding + 2 * wall_thickness;
 z = modifier_card_height + interior_padding + 2 * wall_thickness;
 y = card_count * modifier_card_thickness + 2 * wall_thickness;
 
-
-
 // box
-cardBox(x,y,z,wall_thickness,lid_pct,overlap,divider_slots);
+cardBox(x, y, z, wall_thickness, lid_pct, overlap, divider_slots);
 
 // lid
 color("red")
-	
-	translate([0,-1.5*y,0])
-	cardBoxSpacedLid(x,y,z,wall_thickness,lid_pct);
+
+    translate([0, -1.5 * y, 0])
+        cardBoxSpacedLid(x, y, z, wall_thickness, lid_pct);
