@@ -1,6 +1,0 @@
-[submodule "libs/dotSCAD"]
-	path = libs/dotSCAD
-	url = https://github.com/eculicny/dotSCAD.git
-[submodule "libs/BOSL2"]
-	path = libs/BOSL2
-	url = https://github.com/BelfrySCAD/BOSL2.git
