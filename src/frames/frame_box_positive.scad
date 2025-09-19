@@ -1,4 +1,4 @@
-module picture_frame_box_positive(backing_board_size_arr, frame_thickness, interior_wall_thickness) {
+module frame_box_positive(backing_board_size_arr, frame_thickness, interior_wall_thickness) {
     backing_board_width = backing_board_size_arr[0];
     backing_board_height = backing_board_size_arr[1];
 
