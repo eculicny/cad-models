@@ -1,3 +1,4 @@
 *.stl
-
+*.obj
+test.scad
 __pycache__

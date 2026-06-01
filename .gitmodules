@@ -4,3 +4,9 @@
 [submodule "libs/dotSCAD"]
 	path = libs/dotSCAD
 	url = https://github.com/eculicny/dotSCAD.git
+[submodule "libs/threads-scad"]
+	path = libs/threads-scad
+	url = https://github.com/rcolyer/threads-scad.git
+[submodule "libs/constructive"]
+	path = libs/constructive
+	url = https://github.com/solidboredom/constructive.git

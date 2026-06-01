@@ -7,6 +7,9 @@ include <frames/frame_backing_board.scad>
 include <BOSL2/std.scad>
 include <BOSL2/threading.scad>
 
+// adjust based on material used
+tolerance = .1;
+
 // replace with better lib version
 module m3_bolt_hole(h) {
     difference() {
@@ -95,7 +98,7 @@ module voronoi_border_frame(
 
     // backing board
     translate([0, 0, 50])
-        frame_backing_board([backing_board_width, backing_board_height, backing_board_thickness], insert_thickness=insert_thickness);
+        frame_backing_board([backing_board_width - tolerance, backing_board_height - tolerance, backing_board_thickness], insert_thickness=insert_thickness);
 
     // backing board holders
     for (i = [0:1:7]) {
