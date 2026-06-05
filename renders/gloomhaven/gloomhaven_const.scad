@@ -1,7 +1,7 @@
 /* Measurements (mm) & Constants for Gloomhaven objects */
 
-CARD_THICKNESS = .3;
-CARDBOARD_THICKNESS = 2.5;
+CARD_THICKNESS = .32;
+CARDBOARD_THICKNESS = 2.2;
 TOKEN_THICKNESS = CARDBOARD_THICKNESS;
 
 // ~2 padding added to actual measurements

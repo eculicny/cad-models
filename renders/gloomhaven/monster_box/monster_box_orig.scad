@@ -4,9 +4,11 @@ use <boxes/standard_box.scad>
 use <boxes/box_lid.scad>
 use <boxes/box_text.scad>
 
-inset_thickness = 1.5; // ~distance between the lid and top ledge for ability cards
+inset_thickness = 1; // ~distance between the lid and top ledge for ability cards
 token_stack_count = 3;
 $fn = 150;
+
+MATERIAL_THICKNESS = 1;
 
 SLOT_INSET = MATERIAL_THICKNESS;
 
