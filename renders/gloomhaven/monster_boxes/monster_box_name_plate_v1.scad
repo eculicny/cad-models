@@ -1,8 +1,8 @@
 monster_name = "Stone Golem";
 
-cube(size=[50.8, 7.2, 1.7], center=true);
+cube(size=[50.8, 7.2, 1.8], center=true);
 color("BLACK")
-    translate([0, 0, 1.7 / 2])
+    translate([0, 0, 1.8 / 2])
         linear_extrude(height=0.4)
             text(
                 monster_name,

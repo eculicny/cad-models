@@ -12,7 +12,12 @@ PARAMETERS=(
     {
         "param_set_name":"3xstandee_3xcard",
         "standee_layer_count": 3,
-        "stat_card_depression": 1.75,
+        "stat_card_depression": 1.9,
+    },
+    {
+        "param_set_name":"5xstandee_bosscards",
+        "standee_layer_count": 5,
+        "stat_card_depression": 7,
     },
 )
 

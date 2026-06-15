@@ -3,16 +3,17 @@ use <shapes/roundcube_2d.scad>
 
 /**************************TODO: CHANGE THESE VALUES**************************/
 /*
+    7.00mm - for boss box
     1.75mm - for >1 stat card (guard/archer/imps)
     0.75mm - for 1 stat card
 */
-stat_card_depression = 0.75;
+stat_card_depression = 7;
 /*
-    2 for most
+    5 for Boss
     3 for guards/archers
-    ? for Boss
+    2 for most
 */
-standee_layer_count = 2;
+standee_layer_count = 5;
 /******************************END CHANGE VALUES*******************************/
 
 /*
@@ -59,12 +60,11 @@ stat_card_cutout_width = 20;
 stat_card_cutout_height = 10;
 
 // standdard height for initiative marker
-// base_box_z = 11.9; // height not including slot
 /*
     minimized height for 1-tile stacks
     - cardboard measures 2.2mm (0.3 for buffer and slight difference with ability card stack)
 */
-base_box_z = base_box_wall + (standee_layer_count * TOKEN_THICKNESS + 0.3);
+base_box_z = base_box_wall + (standee_layer_count * (TOKEN_THICKNESS + 0.3)) + stat_card_depression;
 
 union() {
     /*
