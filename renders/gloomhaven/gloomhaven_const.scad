@@ -53,10 +53,22 @@ ELEMENT_DIAMETER = 20;
 ELEMENT_COUNT = 6;
 
 /********** BUILD CONSTANTS **********/
+GENERAL_WALL_THICKNESS = 0.8;
+GENERAL_TOKEN_TOLERANCE = 0.3; // z-tolerance
+
 SMALL_CARD_DIVIDER_TEXT_HEIGHT = 7;
 
 HEX_TOKEN_SLOT_RADIUS = HEX_TOKEN_RADIUS + 1; // spacing tolerance
 HEX_TOKEN_SLOT_APOTHEM = HEX_TOKEN_SLOT_RADIUS * sqrt(3) / 2;
+
+// Token Boxes
+HEX_ROW_MAX_COUNT = 3;
+HEX_NUM_ROWS = 5;
+TOKEN_BOX_R = 2;
+TOKEN_BOX_X = 8 * HEX_TOKEN_SLOT_RADIUS + 4 * GENERAL_WALL_THICKNESS; // should be able to fit five rows, alternate is match card boxes
+TOKEN_BOX_Y = 110 - 2; // 11cm is exact, remove some tolerance for fit
+function token_box_z(token_stack_height, box_floor = 2 * GENERAL_WALL_THICKNESS, token_thickness = TOKEN_THICKNESS, token_tolerance = GENERAL_TOKEN_TOLERANCE) =
+    token_stack_height * (TOKEN_THICKNESS + GENERAL_TOKEN_TOLERANCE) + box_floor;
 
 /********** OLD CONSTANTS **********/
 
