@@ -1,19 +1,15 @@
 include <../gloomhaven_const.scad>
-use <shapes/roundcube_2d.scad>
 use <Round-Anything/polyround.scad>
 use <Round-Anything/unionRoundMask.scad>
 
 $fn = 200;
-card_tolerance = 1.5;
-label_card_overage = SMALL_CARD_DIVIDER_TEXT_HEIGHT + 1;
-base_box_wall = 0.8;
-base_box_floor = 2 * base_box_wall;
-base_box_x = 150;
+base_box_wall = SMALL_CARD_BOX_WALL;
+base_box_floor = SMALL_CARD_BOX_FLOOR;
+base_box_x = SMALL_CARD_BOX_LENGTH;
 base_box_int_x = base_box_x - 2 * base_box_wall;
-base_box_int_y = SMALL_CARD_LENGTH + card_tolerance;
+base_box_int_y = SMALL_CARD_LENGTH + GENERAL_CARD_TOLERANCE;
 base_box_y = base_box_int_y + 2 * base_box_wall;
-base_box_int_z = SMALL_CARD_WIDTH + card_tolerance;
-base_box_z = base_box_int_z + base_box_floor + label_card_overage;
+base_box_z = SMALL_CARD_BOX_HEIGHT;
 base_box_r = 2;
 
 module end_wall() {

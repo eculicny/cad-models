@@ -1,15 +1,15 @@
-include <./gloomhaven_const.scad>
+include <../gloomhaven_const.scad>
 use <shapes/roundcube_2d.scad>
 
 $fn = 60;
-int_box_x = 150;
-int_box_y = 60;
-int_box_z = 110;
+int_box_x = MINI_BOX_HOLDER_INT_LENGTH;
+int_box_y = MINI_BOX_HOLDER_INT_WIDTH;
+int_box_z = MINI_BOX_HOLDER_INT_HEIGHT;
 box_r = 2;
-box_wall = 0.8;
-box_x = int_box_x + 2 * box_wall;
-box_y = int_box_y + 2 * box_wall;
-box_z = int_box_z + box_wall;
+box_wall = MINI_BOX_HOLDER_WALL;
+box_x = MINI_BOX_HOLDER_LENGTH;
+box_y = MINI_BOX_HOLDER_WIDTH;
+box_z = MINI_BOX_HOLDER_HEIGHT;
 
 difference() {
     roundcube_2d(size=[int_box_x + 2 * box_wall, int_box_y + 2 * box_wall, int_box_z + box_wall], radius=box_r);

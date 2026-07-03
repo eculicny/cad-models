@@ -4,7 +4,6 @@ use <Round-Anything/polyround.scad>
 use <Round-Anything/unionRoundMask.scad>
 
 $fn = 200;
-card_tolerance = 1.5; // 64.8
 extra_box_tolerance = 1.2; // 66
 // TODO fix
 label_card_overage = SMALL_CARD_DIVIDER_TEXT_HEIGHT + 1;
@@ -12,10 +11,9 @@ base_box_wall = 0.8;
 base_box_floor = 2 * base_box_wall;
 base_box_x = 150;
 base_box_int_x = base_box_x - 2 * base_box_wall;
-base_box_int_y = LARGE_CARD_LENGTH + card_tolerance + extra_box_tolerance;
-base_box_y = base_box_int_y + 2 * base_box_wall;
-base_box_int_z = LARGE_CARD_WIDTH + card_tolerance;
-base_box_z = base_box_int_z + base_box_floor + label_card_overage;
+base_box_int_y = LARGE_CARD_BOX_INT_WIDTH;
+base_box_y = LARGE_CARD_BOX_WIDTH;
+base_box_z = LARGE_CARD_BOX_HEIGHT;
 base_box_r = 2;
 
 module end_wall() {
