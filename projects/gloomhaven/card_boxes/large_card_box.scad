@@ -5,8 +5,7 @@ use <Round-Anything/unionRoundMask.scad>
 
 $fn = 200;
 extra_box_tolerance = 1.2; // 66
-// TODO fix
-label_card_overage = SMALL_CARD_DIVIDER_TEXT_HEIGHT + 1;
+label_card_overage = GENERAL_CARD_DIVIDER_TEXT_HEIGHT + 1;
 base_box_wall = 0.8;
 base_box_floor = 2 * base_box_wall;
 base_box_x = 150;
