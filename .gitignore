@@ -2,3 +2,4 @@
 *.obj
 test.scad
 __pycache__
+build/
