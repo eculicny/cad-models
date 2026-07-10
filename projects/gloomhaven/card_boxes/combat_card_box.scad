@@ -53,7 +53,7 @@ module side_wall() {
 union() {
     difference() {
         cube(size=[base_box_x, base_box_y, base_box_z]);
-        // TODO center on box
+        // center on box
         translate(v=[base_box_wall, 0, base_box_floor])
             // create card tray array
             linear_extrude(height=base_box_z) {
