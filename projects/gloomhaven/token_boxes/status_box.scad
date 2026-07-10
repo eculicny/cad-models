@@ -4,6 +4,8 @@ use <shapes/roundcube.scad>
 use <Round-Anything/polyround.scad>
 use <Round-Anything/unionRoundMask.scad>
 
+module status_box() {
+
 token_stack_height = 4;
 
 $fn = 200;
@@ -31,3 +33,5 @@ for (i = [0:2]) {
             }
     }
 }
+}
+status_box();

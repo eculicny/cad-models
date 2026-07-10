@@ -4,6 +4,8 @@ use <shapes/roundcube.scad>
 use <Round-Anything/polyround.scad>
 use <Round-Anything/unionRoundMask.scad>
 
+module gold_box() {
+
 // 159.2mm x ~40mm to work with (2mm acrylic sheet)
 
 token_stack_height = 6;
@@ -50,3 +52,5 @@ difference() {
                         square(size=[base_box_x - TREASURE_CHEST_SLOT_WIDTH - 3 * base_box_wall, base_box_y - gold_5_slot_width - 3 * base_box_wall]);
                 }
 }
+}
+gold_box();

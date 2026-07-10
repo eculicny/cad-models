@@ -1,6 +1,8 @@
 include <../gloomhaven_const.scad>
 use <shapes/roundcube_2d.scad>
 
+module monster_box_v1() {
+
 /**************************TODO: CHANGE THESE VALUES**************************/
 /*
     7.00mm - for boss box
@@ -162,3 +164,5 @@ union() {
             roundcube_2d([initiative_cutout_edge, initiative_cutout_edge, 5], 5);
     }
 }
+}
+monster_box_v1();

@@ -4,6 +4,8 @@ use <boxes/standard_box.scad>
 use <boxes/box_lid.scad>
 use <boxes/box_text.scad>
 
+module monster_box_orig() {
+
 inset_thickness = 1; // ~distance between the lid and top ledge for ability cards
 token_stack_count = 3;
 $fn = 150;
@@ -47,3 +49,5 @@ splitBox(box_dim_xyz, box_small_dim_xy, slot_vars, SLOT_INSET, inneredge_height,
 translate([0, full_y + 30, 0])
     color("purple")
         boxLid(lid_dim_xy, MATERIAL_THICKNESS, LID_SCALE);
+}
+monster_box_orig();

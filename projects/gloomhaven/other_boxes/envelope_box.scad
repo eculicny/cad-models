@@ -1,6 +1,8 @@
 include <./gloomhaven_const.scad>
 use <shapes/roundcube_2d.scad>
 
+module envelope_box() {
+
 $fn = 100;
 base_box_wall = GENERAL_WALL_THICKNESS;
 base_box_floor = GENERAL_WALL_THICKNESS;
@@ -95,3 +97,5 @@ difference() {
                 valign="center"
             );
 }
+}
+envelope_box();

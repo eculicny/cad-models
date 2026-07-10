@@ -1,6 +1,8 @@
 include <../gloomhaven_const.scad>
 use <shapes/roundcube_2d.scad>
 
+module small_card_divider() {
+
 label = "Random Dungeon"; // see if long words work
 //label = "Prosperity 9";
 
@@ -26,3 +28,5 @@ union() {
                     valign="center"
                 );
 }
+}
+small_card_divider();

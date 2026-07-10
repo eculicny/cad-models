@@ -3,6 +3,8 @@ use <boxes/box_lid.scad>
 use <boxes/box_text.scad>
 include <./gloomhaven_const.scad>
 
+module class_box_orig() {
+
 large_x = LARGE_CARD_WIDTH;
 large_y = LARGE_CARD_LENGTH;
 small_x_ = SMALL_CARD_WIDTH;
@@ -93,3 +95,5 @@ splitDoubleBox([inset_x, inset_y], [small_x_, small_y_], [large_x, large_y], hei
 //translate([0, inset_y + 40,0])
 //color("yellow")
 //	boxLid([full_lid_x, full_lid_y], MATERIAL_THICKNESS, LID_SCALE);
+}
+class_box_orig();

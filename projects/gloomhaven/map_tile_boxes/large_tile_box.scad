@@ -1,6 +1,8 @@
 include <../gloomhaven_const.scad>
 use <shapes/roundcube_2d.scad>
 
+module large_tile_box() {
+
 $fn = 100;
 
 // mini box overage 4mm, monster box to class box height ~41mm
@@ -49,3 +51,5 @@ difference() {
     translate(v=[0, base_box_y - (PAPER_CLASS_BOX_HEIGHT + tolerance), 0])
         cube(size=[PAPER_CLASS_BOX_WIDTH + tolerance, PAPER_CLASS_BOX_HEIGHT + tolerance, base_box_z]);
 }
+}
+large_tile_box();

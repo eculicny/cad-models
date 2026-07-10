@@ -1,6 +1,8 @@
 include <../gloomhaven_const.scad>
 use <shapes/roundcube_2d.scad>
 
+module small_tile_box() {
+
 $fn = 100;
 base_box_r = 2;
 base_box_wall = 2 * GENERAL_WALL_THICKNESS;
@@ -33,3 +35,5 @@ difference() {
                 roundcube_2d(size=[base_box_depression_int_x, base_box_y - 0.8, base_box_long_z], radius=base_box_r);
         }
 }
+}
+small_tile_box();

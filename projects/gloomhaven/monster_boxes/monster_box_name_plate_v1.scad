@@ -1,3 +1,4 @@
+module monster_box_name_plate_v1() {
 monster_name = "Stone Golem";
 // full z - 1.2(5) (from initiative_slot_lip_height)
 name_plate_width = 7.2; // for 2x standees
@@ -23,3 +24,5 @@ color("BLACK")
                 halign="center",
                 valign="center"
             );
+}
+monster_box_name_plate_v1();

@@ -1,6 +1,8 @@
 include <../gloomhaven_const.scad>
 use <shapes/roundcube_2d.scad>
 
+module miniature_box_holder() {
+
 $fn = 60;
 int_box_x = MINI_BOX_HOLDER_INT_LENGTH;
 int_box_y = MINI_BOX_HOLDER_INT_WIDTH;
@@ -24,3 +26,5 @@ difference() {
                     paths=[[0, 1, 2, 3]]
                 );
 }
+}
+miniature_box_holder();

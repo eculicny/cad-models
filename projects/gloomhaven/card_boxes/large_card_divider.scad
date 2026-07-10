@@ -1,6 +1,8 @@
 include <../gloomhaven_const.scad>
 use <shapes/roundcube_2d.scad>
 
+module large_card_divider() {
+
 label = "Locked Road Events"; // see if long words work
 //label = "Road Events";
 
@@ -28,3 +30,5 @@ union() {
                     valign="center"
                 );
 }
+}
+large_card_divider();
