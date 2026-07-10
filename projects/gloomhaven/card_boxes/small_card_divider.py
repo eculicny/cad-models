@@ -9,9 +9,15 @@ ITEM_CARD_DIVIDERS = [
     "Prosperity 7",
     "Prosperity 8",
     "Prosperity 9",
-    "Scenarios",
+    "Random Scenarios",
     "Random Dungeon",
+    "Random Items",
     "Available",
+    "Battle Goals",
+    "Player 1 Modifiers",
+    "Player 2 Modifiers",
+    "Player 3 Modifiers",
+    "Player 4 Modifiers",
 ]
 
 BUILD_PARAMETERS = tuple(
