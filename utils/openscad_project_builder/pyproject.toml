@@ -1,5 +1,5 @@
 [project]
-name = "openscad-project-builder"
+name = "osbuild"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -9,3 +9,10 @@ dependencies = [
     "igittigitt>=2.2.0",
     "loguru>=0.7.3",
 ]
+
+[project.scripts]
+osbuild = "cli:cli"
+
+[build-system]
+requires = ["flit_core<4"]
+build-backend = "flit_core.buildapi"
