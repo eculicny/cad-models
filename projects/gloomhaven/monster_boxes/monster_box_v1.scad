@@ -117,8 +117,8 @@ module monster_box_v1(standee_layer_count, stat_card_depression) {
                 lid_slot(1, base_box_x, lid_overhang_width);
 
         /*
-        Stat Card Overhang
-    */
+            Stat Card Overhang
+        */
         // to the top of the box at the depression distance from the bottom of the lid slot
         // back ledge
         translate([0, base_box_y, base_box_z - stat_card_depression])
@@ -131,8 +131,8 @@ module monster_box_v1(standee_layer_count, stat_card_depression) {
                 lid_slot(1, base_box_y - stat_card_cutout_width - 2 * lid_overhang_width, stat_card_overhang_width);
 
         /*
-        Initiative marker slot
-    */
+            Initiative marker slot
+        */
         difference() {
             translate(v=[-initiative_slot_ext_width, 0, 0])
                 cube(size=[initiative_slot_ext_width, base_box_y, base_box_z + lid_overhang_height]);

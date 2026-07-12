@@ -1,4 +1,4 @@
-include <./gloomhaven_const.scad>
+include <../gloomhaven_const.scad>
 use <shapes/roundcube_2d.scad>
 
 module standee_holder_box() {

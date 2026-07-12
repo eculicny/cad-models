@@ -2,8 +2,6 @@ include <../gloomhaven_const.scad>
 use <shapes/roundcube_2d.scad>
 use <shapes/regular_polygon.scad>
 
-module base_stacked_token_box() {
-
 // TODO generalize?
 module half_hex(n, r) {
     difference() {
@@ -52,5 +50,3 @@ module half_hex(n, r) {
     }
 }
 base_stacked_token_box(5);
-}
-base_stacked_token_box();
