@@ -3,6 +3,8 @@ use <shapes/roundcube_2d.scad>
 use <shapes/regular_polygon.scad>
 use <./base_stacked_token_box.scad>
 
+module tile_box_4x() {
+
 $fn = 100;
 token_stack_height = 4;
 
@@ -64,3 +66,5 @@ union() {
                 cube(size=[HEX_TOKEN_SLOT_RADIUS, 2 * (HEX_TOKEN_SLOT_APOTHEM), base_box_z + 5]);
     }
 }
+}
+tile_box_4x();

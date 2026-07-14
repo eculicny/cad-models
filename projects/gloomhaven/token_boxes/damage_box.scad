@@ -4,6 +4,8 @@ use <shapes/roundcube.scad>
 use <Round-Anything/polyround.scad>
 use <Round-Anything/unionRoundMask.scad>
 
+module damage_box() {
+
 // 159.2mm x ~40mm to work with (2mm acrylic sheet)
 
 token_stack_height = 6; // set stack height to match other box heights
@@ -36,3 +38,5 @@ difference() {
     translate(v=[base_box_wall, hp_large_slot_width + hp_medium_slot_width * 1.5 + 3 * base_box_wall, base_box_floor])
         roundcube_2d(size=[base_box_x - 2 * base_box_wall, base_box_y - 4 * base_box_wall - hp_large_slot_width - hp_medium_slot_width * 1.5, base_box_z], radius=base_box_r);
 }
+}
+damage_box();

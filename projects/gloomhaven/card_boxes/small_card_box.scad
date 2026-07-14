@@ -2,6 +2,8 @@ include <../gloomhaven_const.scad>
 use <Round-Anything/polyround.scad>
 use <Round-Anything/unionRoundMask.scad>
 
+module small_card_box() {
+
 $fn = 200;
 base_box_wall = SMALL_CARD_BOX_WALL;
 base_box_floor = SMALL_CARD_BOX_FLOOR;
@@ -55,3 +57,5 @@ unionRoundMask(r=1, detail=$preview ? 3 : 10, q=$preview ? 10 : 70, showMask=fal
         translate(v=[-base_box_x / 2, (i % 2) * (base_box_y) - base_box_wall, 0])
             cube(size=[2 * base_box_x, 2 * base_box_wall, base_box_z + 5]);
 }
+}
+small_card_box();

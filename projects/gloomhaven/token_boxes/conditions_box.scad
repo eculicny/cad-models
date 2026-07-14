@@ -4,6 +4,8 @@ use <shapes/roundcube.scad>
 use <Round-Anything/polyround.scad>
 use <Round-Anything/unionRoundMask.scad>
 
+module conditions_box() {
+
 // 159.2mm x ~40mm to work with (2mm acrylic sheet)
 
 token_stack_height = 4;
@@ -33,3 +35,5 @@ for (i = [0:2]) {
             }
     }
 }
+}
+conditions_box();

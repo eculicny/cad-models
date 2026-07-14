@@ -3,6 +3,8 @@ use <shapes/roundcube_2d.scad>
 use <shapes/regular_polygon.scad>
 use <./base_stacked_token_box.scad>
 
+module tile_box_obstacles() {
+
 $fn = 100;
 
 token_stack_height = 6;
@@ -111,3 +113,5 @@ difference() {
                 ;
             }
 }
+}
+tile_box_obstacles();
