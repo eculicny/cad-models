@@ -5,7 +5,7 @@ label = "Locked Road Events"; // see if long words work
 //label = "Road Events";
 
 $fn = 100;
-divider_thickness = 2 * GENERAL_WALL_THICKNESS;
+divider_thickness = GENERAL_WALL_THICKNESS;
 divider_x = LARGE_CARD_LENGTH;
 // increase default overage to better center on the divider
 divider_y = LARGE_CARD_WIDTH + GENERAL_CARD_LABEL_OVERAGE + 2;

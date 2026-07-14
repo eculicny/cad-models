@@ -5,7 +5,7 @@ label = "Random Dungeon"; // see if long words work
 //label = "Prosperity 9";
 
 $fn = 100;
-divider_thickness = 2 * GENERAL_WALL_THICKNESS;
+divider_thickness = GENERAL_WALL_THICKNESS;
 divider_x = SMALL_CARD_LENGTH;
 divider_y = SMALL_CARD_WIDTH + GENERAL_CARD_LABEL_OVERAGE;
 font_size = GENERAL_CARD_DIVIDER_TEXT_HEIGHT - 2;
