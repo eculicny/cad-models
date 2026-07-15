@@ -13,7 +13,6 @@ ITEM_CARD_DIVIDERS = [
     "Random Items",
     "Other Items",
     "Random Scenarios",
-    "Random Dungeons",
     "Battle Goals",
     "Player 1 Modifiers",
     "Player 2 Modifiers",
