@@ -150,10 +150,7 @@ module monster_box_v1(standee_layer_count, stat_card_depression) {
     }
 }
 
-/**************************TODO: CHANGE THESE VALUES**************************/
 /*
-    7.00mm - for boss box
-    1.75mm - for >1 stat card (guard/archer/imps)
     0.75mm - for 1 stat card
 */
 stat_card_depression = 7;
@@ -163,5 +160,4 @@ stat_card_depression = 7;
     2 for most
 */
 standee_layer_count = 5;
-/******************************END CHANGE VALUES*******************************/
 monster_box_v1(standee_layer_count, stat_card_depression);

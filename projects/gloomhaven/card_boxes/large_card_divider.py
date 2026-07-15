@@ -6,6 +6,8 @@ LARGE_CARD_DIVIDERS = [
     "Locked Road Events",
     "Locked City Events",
     "Locked Rift Events",
+    "Locked Personal Quests",
+    "Random Dungeons",
     "Removed",
 ]
 

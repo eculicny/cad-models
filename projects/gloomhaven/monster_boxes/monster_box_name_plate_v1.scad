@@ -1,7 +1,7 @@
 module monster_box_name_plate_v1(monster_name, name_plate_width) {
 
     name_plate_length = 50.8; // initiative_slot_inner_length - 0.7
-    name_plate_thickness = 1.8;
+    name_plate_thickness = 1.6;
 
     cube(
         size=[

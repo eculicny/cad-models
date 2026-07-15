@@ -1,41 +1,40 @@
-# TODO Verify actual names
 # TODO parameterize size
-# TODO verify multi size boxes
 MULTI_NAMES = [
     "Archer",
     "Guard",
-    "Imps",
 ]
 
 SINGLE_NAMES = [
     "Ancient Artillery",
     "Cave Bear",
     "Cultist",
-    "Tentacle",
+    "Deep Terror",
     "Earth Demon",
-    "Fire Demon",
+    "Flame Demon",
     "Frost Demon",
     "Giant Viper",
-    "Harrower",
+    "Harrower Infester",
     "Hound",
-    "Shaman",
     "Living Bones",
     "Living Corpse",
-    "Living Shadow(?)",
-    "Mirelurk (def not the name)",
+    "Living Spirit",
+    "Lurker",
     "Night Demon",
     "Ooze",
     "Rending Drake",
-    "Savaas Frost",
-    "Savaas Fire",
+    "Savaas Icestorm",
+    "Savaas Lavaflow",
     "Spitting Drake",
     "Stone Golem",
     "Sun Demon",
-    "Scout",
     "Wind Demon",
-    "FC Monster 1",
-    "FC Monster 2",
-    "FC Monster 3",
+    "Aesther Ashblade",
+    "Valrath Savage",
+    "Valrath Tracker",
+    # Multi-group monsters in 2x standee boxes
+    "Imp",
+    "Scout",
+    "Shaman",
 ]
 
 BUILD_PARAMETERS = (
@@ -44,7 +43,7 @@ BUILD_PARAMETERS = (
             "output_suffix": label.replace(" ", "_").lower(),
             "output_subdir": "name_plates",
             "monster_name": label,
-            # "plate_width": ?
+            "name_plate_width": 10.85,
         }
         for label in MULTI_NAMES
     ]
@@ -53,16 +52,16 @@ BUILD_PARAMETERS = (
             "output_suffix": label.replace(" ", "_").lower(),
             "output_subdir": "name_plates",
             "monster_name": label,
-            # "plate_width": ?
+            "name_plate_width": 7.2,
         }
         for label in SINGLE_NAMES
     ]
     + [
         {
-            "output_suffix": "bosses",
+            "output_suffix": "boss",
             "output_subdir": "name_plates",
-            "monster_name": "Bosses",
-            # "plate_width": ?
+            "monster_name": "Boss",
+            "name_plate_width": 20.95,
         }
     ]
 )
