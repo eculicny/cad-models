@@ -19,12 +19,11 @@ CLASSES = [
     "blank",
 ]
 
-BUILD_PARAMETERS = [
+BUILD_PARAMETERS = tuple(
     {
         "output_suffix": label.lower(),
         "output_subdir": "lids",
         "file_name": f"../img/{label}.svg",
-        "scale_factor": 3.75 if label == "triangles" else 10,
     }
     for label in CLASSES
-]
+)
