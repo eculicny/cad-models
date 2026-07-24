@@ -14,7 +14,7 @@ CLASSES = [
     "spellweaver",
     "sun",
     "tinkerer",
-    "triangles",
+    "triangles",  # TODO doesn't show up on rendered model
     "two_minis",
     "blank",
 ]
