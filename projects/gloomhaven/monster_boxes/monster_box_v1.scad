@@ -20,7 +20,7 @@ module monster_box_v1(standee_layer_count, stat_card_depression) {
 
     $fn = 60;
 
-    stat_card_tolerance = 0.1;
+    stat_card_tolerance = 2.1;
     ability_card_tolerance = 0.1;
     lid_overhang_width = 2.35;
     lid_overhang_height = 1.9; // reduced from 2.2, 2.1 prints
