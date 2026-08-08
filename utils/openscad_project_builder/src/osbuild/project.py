@@ -1,8 +1,9 @@
-import tomllib
-import igittigitt
 import shutil
 import subprocess
 from pathlib import Path
+
+import igittigitt
+import tomllib
 from loguru import logger
 
 
@@ -59,7 +60,7 @@ class Project:
                 if self.include_parser and not self.include_parser.match(root / f):
                     logger.info(f"Excluding file: {root / f}")
                     continue
-                elif self.ignore_parser.match(root / f):
+                elif self.ignore_parser and self.ignore_parser.match(root / f):
                     logger.info(f"Ignoring file: {root / f}")
                     continue
                 else:
@@ -118,7 +119,7 @@ class Project:
             logger.info(f"Processing config file: {config_file}")
             # load the config file and extract the parameters
             config = {}
-            exec(config_file.read_text(), {}, config)
+            exec(config_file.read_text(), {}, config)  # noqa: S102
 
             file_build_configs = config.get("BUILD_PARAMETERS")
             if not file_build_configs:
@@ -187,7 +188,7 @@ class Project:
         self,
         input_file: Path,
         output_file: Path | None = None,
-        parameters: dict = {},
+        parameters: dict = {},  # noqa: B006
         format: str = "binstl",
         output_suffix: str = "",
         output_subdir: Path | None = None,
@@ -207,7 +208,10 @@ class Project:
         command = f"openscad --backend Manifold --enable textmetrics -o {output_file} --export-format {format} {cli_params} {input_file}"
         logger.debug(f"Running command: {command}")
         result = subprocess.run(
-            command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+            command,
+            shell=True,
+            capture_output=True,
+            check=False,
         )
         logger.debug(f"Command output: {result.stdout.decode().replace('\n\n', '\n')}")
         logger.debug(f"Command errors: {result.stderr.decode().replace('\n\n', '\n')}")

@@ -3,8 +3,6 @@ from __future__ import annotations
 import subprocess
 from pathlib import Path
 
-import pytest
-
 from osbuild.project import Project
 
 
@@ -243,7 +241,7 @@ def test_execute_openscad_cli_runs_command(tmp_path: Path, monkeypatch):
             self.stdout = b"ok"
             self.stderr = b""
 
-    def fake_run(command, shell, stdout, stderr):
+    def fake_run(command, shell, capture_output, check):
         captured["command"] = command
         return FakeCompletedProcess()
 
