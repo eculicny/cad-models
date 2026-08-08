@@ -69,9 +69,8 @@ class Project:
 
             for fs, file_list in file_stems.items():
                 if (
-                    len(file_list) == 2
-                    and any(f.suffix == ".scad" for f in file_list)
-                    and any(f.suffix == ".py" for f in file_list)
+                    sum(f.suffix == ".scad" for f in file_list) == 1
+                    and sum(f.suffix == ".py" for f in file_list) == 1
                 ):
                     logger.info(
                         f"Found parameterized config file for {fs}.scad, ignoring .scad file and adding .py file to config list"
