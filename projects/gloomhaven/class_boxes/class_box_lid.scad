@@ -1,6 +1,7 @@
 include <../gloomhaven_const.scad>
 
 file_name = "../img/triangles.svg";
+scale_factor = 3.5; //normally 10
 
 lid_thickness = 1;
 angle_width = 2.35 - GENERAL_WALL_THICKNESS - 0.4;
@@ -31,7 +32,7 @@ union() {
     color("aqua")
         translate(v=[0, 0, lid_thickness])
             linear_extrude(height=icon_height)
-                scale(v=[10, 10, 1])
+                scale(v=[scale_factor, scale_factor, 1])
                     import(
                         file=file_name,
                         center=true,

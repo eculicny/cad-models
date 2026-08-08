@@ -4,7 +4,7 @@ use <Round-Anything/polyround.scad>
 
 base_box_x = LARGE_CARD_WIDTH;
 base_box_y = LARGE_CARD_LENGTH;
-base_box_z = 0.6;
+base_box_z = 0.4;
 base_box_r = 2;
 tab_size = 12;
 tab_offset = 12;

@@ -26,8 +26,8 @@ class_notepad_slot_thickness = CLASS_NOTEPAD_THICKNESS + 0.1;
 
 class_stat_card_slot = CARDBOARD_THICKNESS + 0.2;
 
-class_token_wall_position = 5 * CARDBOARD_THICKNESS + .3;
-class_icon_cutout_radius = 5;
+class_icon_wall = base_box_wall + 0.5;
+class_icon_cutout_radius = 6.5;
 
 module lid_slot(ridges, length, overhang_width, overhang_height) {
     translate(v=[GENERAL_WALL_THICKNESS, length, 0])
@@ -81,10 +81,10 @@ difference() {
                         union() {
                             // top slot
                             translate(v=[lid_wall, lid_wall + 2 * small_card_slot_length + 2.5 * base_box_wall, 0])
-                                square(size=[base_box_x - lid_wall - base_box_wall - +(class_token_wall_position + base_box_wall), top_slot_width]);
+                                square(size=[base_box_x - lid_wall - base_box_wall - class_icon_wall, top_slot_width]);
                             // wider side
                             translate(v=[lid_wall + small_card_slot_width + base_box_wall, lid_wall + large_card_slot_width + base_box_wall, 0])
-                                square(size=[base_box_x - (lid_wall + small_card_slot_width + 2 * base_box_wall + (class_token_wall_position + base_box_wall)), top_slot_wider_width]);
+                                square(size=[base_box_x - (lid_wall + small_card_slot_width + 2 * base_box_wall + class_icon_wall), top_slot_wider_width]);
                         }
                 }
     }
@@ -99,15 +99,27 @@ difference() {
     // class token hole
     translate(
         v=[
-            base_box_x - base_box_wall-10,
+            base_box_x - base_box_wall - 0.1,
             lid_wall + large_card_slot_width + base_box_wall + (top_slot_wider_width - 2 * class_icon_cutout_radius) / 2,
             (base_box_z + lid_overhang_height - 2 * class_icon_cutout_radius) / 2,
         ]
     )
         translate(v=[0, class_icon_cutout_radius, class_icon_cutout_radius])
             rotate(a=[0, 90, 0])
-                cylinder(h=base_box_wall + 20, r=class_icon_cutout_radius);
-    // class token slot
-    translate(v=[base_box_x - class_token_wall_position - lid_overhang_width, lid_wall + large_card_slot_width + base_box_wall + (top_slot_wider_width - 2 * class_icon_cutout_radius) / 2 - 1, base_box_floor])
-        roundcube_2d([class_token_wall_position, 2 * (class_icon_cutout_radius + 1), base_box_z], radius=1);
+                cylinder(h=base_box_wall + 0.1, r1=class_icon_cutout_radius, r2=class_icon_cutout_radius);
+    // // class token slot
+    // translate(v=[base_box_x - class_token_wall_position - lid_overhang_width, lid_wall + large_card_slot_width + base_box_wall + (top_slot_wider_width - 2 * class_icon_cutout_radius) / 2 - 1, base_box_floor])
+    //     roundcube_2d([class_token_wall_position, 2 * (class_icon_cutout_radius + 1), base_box_z], radius=1);
 }
+
+// class token hole
+// translate(
+//     v=[
+//         base_box_x - base_box_wall,
+//         lid_wall + large_card_slot_width + base_box_wall + (top_slot_wider_width - 2 * class_icon_cutout_radius) / 2,
+//         (base_box_z + lid_overhang_height - 2 * class_icon_cutout_radius) / 2,
+//     ]
+// )
+//     translate(v=[0, class_icon_cutout_radius, class_icon_cutout_radius])
+//         rotate(a=[0, 90, 0])
+//             cylinder(h=base_box_wall, r1=class_icon_cutout_radius, r2=class_icon_cutout_radius - 0.5);
