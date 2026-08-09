@@ -1,6 +1,5 @@
 [config]
 ignore_files = [
+    "img/",
     "gloomhaven_const.scad",
-    "monster_box_orig.scad",
-    "class_box_orig.scad",
 ]
