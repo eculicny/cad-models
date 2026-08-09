@@ -11,8 +11,11 @@ logger.add(sys.stderr, level="INFO")
 
 
 @click.group()
-def cli():
-    pass
+@click.option("--debug", is_flag=True, help="Enable debug logging")
+def cli(debug):
+    if debug:
+        logger.remove()
+        logger.add(sys.stderr, level="DEBUG")
 
 
 # @cli.command()
