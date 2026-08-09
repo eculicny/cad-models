@@ -1,10 +1,11 @@
 # Python tool that "builds" an openscad project
 
-import click
 import sys
+from pathlib import Path
+
+import click
 from loguru import logger
 from osbuild.project import Project
-from pathlib import Path
 
 logger.remove()
 logger.add(sys.stderr, level="INFO")

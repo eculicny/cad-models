@@ -4,6 +4,7 @@ from pathlib import Path
 
 import igittigitt
 import tomllib
+import trimesh
 from loguru import logger
 
 
@@ -58,10 +59,10 @@ class Project:
             file_stems = {}
             for f in files:
                 if self.include_parser and not self.include_parser.match(root / f):
-                    logger.info(f"Excluding file: {root / f}")
+                    logger.debug(f"Excluding file: {root / f}")
                     continue
                 elif self.ignore_parser and self.ignore_parser.match(root / f):
-                    logger.info(f"Ignoring file: {root / f}")
+                    logger.debug(f"Ignoring file: {root / f}")
                     continue
                 else:
                     file_stems[(root / f).stem] = file_stems.get(
@@ -107,12 +108,19 @@ class Project:
         # attach handler for build log
         build_log_handler_id = logger.add(self.build_log, level="DEBUG")
         has_build_error = False
+        has_mesh_warning = False
 
         # process scad files
         for scad_file in self.scad_files:
             logger.info(f"Building .scad file: {scad_file}")
-            command_success = self._execute_openscad_cli(scad_file)
+            output_file = self._generate_build_path(scad_file=scad_file)
+            command_success = self._execute_openscad_cli(
+                input_file=scad_file, output_file=output_file
+            )
             has_build_error = has_build_error or not command_success
+            if command_success:
+                has_valid_mesh = self._verify_mesh(output_file)
+                has_mesh_warning = has_mesh_warning or not has_valid_mesh
 
         # process config files
         for config_file in self.config_files:
@@ -139,16 +147,24 @@ class Project:
                 f"Found {len(file_build_configs)} build configurations in {config_file}"
             )
 
+            scad_file = config_file.with_suffix(".scad")
             for file_config in file_build_configs:
                 output_suffix = file_config.pop("output_suffix")
                 output_subdir = file_config.pop("output_subdir", None)
+                output_file = self._generate_build_path(
+                    scad_file=scad_file,
+                    build_suffix=output_suffix,
+                    build_subdir=output_subdir,
+                )
                 command_success = self._execute_openscad_cli(
-                    config_file.with_suffix(".scad"),
+                    input_file=scad_file,
+                    output_file=output_file,
                     parameters=file_config,
-                    output_suffix=output_suffix,
-                    output_subdir=output_subdir,
                 )
                 has_build_error = has_build_error or not command_success
+                if command_success:
+                    has_valid_mesh = self._verify_mesh(output_file)
+                    has_mesh_warning = has_mesh_warning or not has_valid_mesh
 
         # remove build log handler
         logger.remove(build_log_handler_id)
@@ -157,13 +173,17 @@ class Project:
             logger.error(
                 f"Build of {self.project_dir}{self.selected_file_patterns if self.selected_file_patterns else ''} completed with errors. See log for details."
             )
+        elif has_mesh_warning:
+            logger.warning(
+                f"Build of {self.project_dir}{self.selected_file_patterns if self.selected_file_patterns else ''} completed with mesh warnings. See log for details."
+            )
         else:
             logger.info(
                 f"Build of {self.project_dir}{self.selected_file_patterns if self.selected_file_patterns else ''} completed successfully."
             )
 
     def _generate_build_path(
-        self, scad_file: Path, build_suffix: str, build_subdir: Path | None
+        self, scad_file: Path, build_suffix: str = "", build_subdir: Path | None = None
     ):
         """
         Generates the build path for a given .scad file based on the project directory structure.
@@ -187,18 +207,13 @@ class Project:
     def _execute_openscad_cli(
         self,
         input_file: Path,
-        output_file: Path | None = None,
+        output_file: Path,
         parameters: dict = {},  # noqa: B006
         format: str = "binstl",
-        output_suffix: str = "",
-        output_subdir: Path | None = None,
     ):
         """
         Executes the openscad command line tool with the given command string and logs the output to the build.log file.
         """
-        output_file = output_file or self._generate_build_path(
-            input_file, build_suffix=output_suffix, build_subdir=output_subdir
-        )
         if not output_file.parent.exists():
             logger.debug(f"Creating output directory: {output_file.parent}")
             output_file.parent.mkdir(parents=True)
@@ -221,3 +236,23 @@ class Project:
             )
             return False
         return True
+
+    def _verify_mesh(self, file: Path) -> bool:
+        try:
+            mesh = trimesh.load_mesh(file)
+            if (
+                not mesh.is_winding_consistent
+                or not mesh.is_watertight
+                or not mesh.volume > 0
+            ):
+                logger.warning(
+                    f"Mesh {file} is not valid. Winding consistent: {mesh.is_winding_consistent}, Watertight: {mesh.is_watertight}, Volume: {mesh.volume}"
+                )
+                return False
+            logger.debug(
+                f"Mesh {file} is valid. Winding consistent: {mesh.is_winding_consistent}, Watertight: {mesh.is_watertight}, Volume: {mesh.volume}"
+            )
+            return True
+        except Exception as e:  # noqa: BLE001
+            logger.warning(f"Error verifying mesh {file}: {e}")
+            return False
