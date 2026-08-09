@@ -90,12 +90,12 @@ difference() {
     }
 
     // class card inset
-    translate(v=[lid_wall, lid_overhang_width, base_box_z - (class_stat_card_slot) - (class_notepad_slot_thickness)])
-        cube([CLASS_STAT_CARD_LENGTH + 2, CLASS_STAT_CARD_WIDTH + 2, (class_stat_card_slot) + class_notepad_slot_thickness + 1]);
+     translate(v=[lid_wall, lid_overhang_width, base_box_z - (class_stat_card_slot)])
+         cube([CLASS_STAT_CARD_LENGTH + 2, CLASS_STAT_CARD_WIDTH + 2, (class_stat_card_slot) + class_notepad_slot_thickness + 1]);
     // notepad inset
     color("aquamarine")
-        translate(v=[base_box_x - base_box_wall - class_notepad_slot_length, (base_box_y - class_notepad_slot_width) / 2, base_box_z - class_notepad_slot_thickness])
-            cube([class_notepad_slot_length, class_notepad_slot_width, class_notepad_slot_thickness]);
+        translate(v=[(base_box_x - class_notepad_slot_length)/2, (base_box_y - class_notepad_slot_width) / 2, base_box_z - class_notepad_slot_thickness - class_stat_card_slot])
+            cube([class_notepad_slot_length, class_notepad_slot_width, class_notepad_slot_thickness+class_stat_card_slot]);
     // class token hole
     translate(
         v=[
