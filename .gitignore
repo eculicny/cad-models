@@ -1,5 +1,6 @@
 *.stl
 *.obj
+*.3mf
 test.scad
 __pycache__
 build/
