@@ -1,18 +1,22 @@
 # Python tool that "builds" an openscad project
 
-import click
 import sys
+from pathlib import Path
+
+import click
 from loguru import logger
 from osbuild.project import Project
-from pathlib import Path
 
 logger.remove()
 logger.add(sys.stderr, level="INFO")
 
 
 @click.group()
-def cli():
-    pass
+@click.option("--debug", is_flag=True, help="Enable debug logging")
+def cli(debug):
+    if debug:
+        logger.remove()
+        logger.add(sys.stderr, level="DEBUG")
 
 
 # @cli.command()

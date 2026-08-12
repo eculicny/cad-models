@@ -8,6 +8,7 @@ dependencies = [
     "click>=8.4.2",
     "igittigitt>=2.2.0",
     "loguru>=0.7.3",
+    "trimesh>=5.0.0",
 ]
 
 [dependency-groups]
