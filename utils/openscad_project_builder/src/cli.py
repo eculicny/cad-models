@@ -34,11 +34,12 @@ def cli(debug):
     multiple=True,
     help="Glob patterns for files to include in the build",
 )
-def build(project_dir, selected_file_patterns):
+@click.option("--repair-mesh", is_flag=True)
+def build(project_dir, selected_file_patterns, repair_mesh):
     project = Project(Path(project_dir), selected_file_patterns)
     project.parse_config()
     project.compile()
-    project.build()
+    project.build(repair_mesh=repair_mesh)
 
 
 if __name__ == "__main__":
