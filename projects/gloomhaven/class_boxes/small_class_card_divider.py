@@ -10,7 +10,7 @@ BUILD_PARAMETERS = [
         "output_suffix": "locked_opt1",
         "output_subdir": "dividers",
         "file_name": "../img/lock.svg",
-        "scale_factor": 0.3,
+        "scale_factor": 0.28,
         "tab_offset": 21,
     },
     {
