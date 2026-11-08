@@ -86,7 +86,7 @@ class Project:
                         f"Too many or no .scad or .py file found for {fs}, ignoring"
                     )
 
-    def build(self):
+    def build(self, repair_mesh: bool = False):
         """
         Builds the project by creating stl files from the .scad files found in the project directory and placing them in the build directory.
 
@@ -119,7 +119,7 @@ class Project:
             )
             has_build_error = has_build_error or not command_success
             if command_success:
-                has_valid_mesh = self._verify_mesh(output_file)
+                has_valid_mesh = self._verify_mesh(output_file, repair_mesh=repair_mesh)
                 has_mesh_warning = has_mesh_warning or not has_valid_mesh
 
         # process config files
@@ -163,7 +163,9 @@ class Project:
                 )
                 has_build_error = has_build_error or not command_success
                 if command_success:
-                    has_valid_mesh = self._verify_mesh(output_file)
+                    has_valid_mesh = self._verify_mesh(
+                        output_file, repair_mesh=repair_mesh
+                    )
                     has_mesh_warning = has_mesh_warning or not has_valid_mesh
 
         # remove build log handler
@@ -237,7 +239,7 @@ class Project:
             return False
         return True
 
-    def _verify_mesh(self, file: Path) -> bool:
+    def _verify_mesh(self, file: Path, repair_mesh: bool = False) -> bool:
         try:
             mesh = trimesh.load_mesh(file)
             if (
@@ -245,9 +247,26 @@ class Project:
                 or not mesh.is_watertight
                 or not mesh.volume > 0
             ):
+                # TODO try out meshlib for repair otherwise meshlab has a CLI
+                if repair_mesh and not mesh.is_watertight:
+                    logger.info(f"Repairing mesh {file}")
+                    is_repaired_watertight = trimesh.repair.fill_holes(
+                        mesh, use_fan=True
+                    )
+                    # mesh.export(file)
+                    # re-verify the mesh after repair
+                    if is_repaired_watertight:
+                        logger.warning(
+                            f"Mesh {file} can be repaired successfully using fill_holes(). Winding consistent: {mesh.is_winding_consistent}, Watertight: {mesh.is_watertight}, Volume: {mesh.volume}"
+                        )
+                    else:
+                        logger.warning(
+                            f"Mesh {file} cannot be repaired successfully using fill_holes(). Winding consistent: {mesh.is_winding_consistent}, Watertight: {mesh.is_watertight}, Volume: {mesh.volume}"
+                        )
                 logger.warning(
                     f"Mesh {file} is not valid. Winding consistent: {mesh.is_winding_consistent}, Watertight: {mesh.is_watertight}, Volume: {mesh.volume}"
                 )
+
                 return False
             logger.debug(
                 f"Mesh {file} is valid. Winding consistent: {mesh.is_winding_consistent}, Watertight: {mesh.is_watertight}, Volume: {mesh.volume}"

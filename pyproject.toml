@@ -1,0 +1,15 @@
+[project]
+name = "cad-models"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "osbuild",
+]
+
+[tool.uv.workspace]
+members = [
+    "utils/openscad_project_builder",
+]
+
+[tool.uv.sources]
+osbuild = { workspace = true }
