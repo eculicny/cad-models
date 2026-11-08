@@ -13,7 +13,7 @@ use <../hex_tile_boxes/tile_box_summons.scad>
 use <../hex_tile_boxes/base_stacked_token_box.scad>
 use <../token_boxes/conditions_box.scad>
 use <../token_boxes/damage_box.scad>
-use <../token_boxes/gold_box.scad>
+use <../token_boxes/loot_box.scad>
 use <../map_tile_boxes/large_tile_box.scad>
 use <../map_tile_boxes/small_tile_box.scad>
 include <../gloomhaven_const.scad>
